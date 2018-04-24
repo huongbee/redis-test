@@ -33,16 +33,15 @@ class Event
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('huong'); //channel-name
+    public function broadcastOn(){
+
+        //return ['channel'];
+        return new PrivateChannel('channel'); 
     }
-    public function broadcastWith()
-    {
-        return [
-            'time'=>microtime(),
-            'author'=>'huonghuong'
-        ];
+    public function broadcastAs(){
+        return 'message'; 
     }
+    
+    
 }
 

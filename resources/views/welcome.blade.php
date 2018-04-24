@@ -82,13 +82,28 @@
                     Laravel
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2" >
+                        <div id="messages" >
+                            <form action="{{route('index')}}" method="POST">
+                                {{csrf_field()}}
+                                <input type="text" name="email" value="12">
+                                <button type="submit">Test</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
                 </div>
+                
+                <script>
+                    var socket = io.connect('http://localhost:3000');
+                    socket.on('channel:message', function (data) {
+                        alert(data)
+                    });
+                </script>
             </div>
         </div>
     </body>

@@ -26,6 +26,6 @@ class EventListener
      */
     public function handle(Event $event)
     {
-        echo $event->user;
+       // echo $event->user;
     }
 }

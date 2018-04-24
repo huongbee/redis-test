@@ -9,6 +9,8 @@
   "author": "huong",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.16.3",
+    "http": "^0.0.0",
     "ioredis": "^3.2.2",
     "redis": "^2.8.0",
     "socket.io": "^2.1.0"

@@ -17,4 +17,11 @@
 // });
 
 
-Route::get('/', 'HomeController@index');
+Route::get('home', [
+    'uses'=>'HomeController@getHome',
+    'as'=>'index'
+]);
+Route::post('home', [
+    'uses'=>'HomeController@sendData',
+    'as'=>'index'
+]);
