@@ -11,5 +11,7 @@ class HomeController extends Controller
         event(
             new \App\Events\Event('huonghuonghuong')
         );
+
+        
     }
 }
