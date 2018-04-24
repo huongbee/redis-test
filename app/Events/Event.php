@@ -10,7 +10,9 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TestEvent
+use App\User;
+
+class Event
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,9 +21,11 @@ class TestEvent
      *
      * @return void
      */
-    public function __construct()
+    
+    public $user;
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -31,6 +35,14 @@ class TestEvent
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new PrivateChannel('huong'); //channel-name
+    }
+    public function broadcastWith()
+    {
+        return [
+            'time'=>microtime(),
+            'author'=>'huonghuong'
+        ];
     }
 }
+

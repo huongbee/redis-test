@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    print_r(app()->make('redis'));
-    return;
-});
+// Route::get('/', function () {
+//     // print_r(app()->make('redis'));
+//     // return;
+// });
+
+
+Route::get('/', 'HomeController@index');
