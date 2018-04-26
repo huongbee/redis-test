@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Events\RedisEvent;
 
 class HomeController extends Controller
 {
@@ -16,7 +17,7 @@ class HomeController extends Controller
         // dd($req->all());
         //$redis = Redis::connection();
         event(
-            new \App\Events\Event($req->_token)
+            $e = new RedisEvent($req->_token)
         );
               
         return redirect()->back();

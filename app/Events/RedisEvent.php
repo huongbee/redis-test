@@ -10,8 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-
-class Event
+class RedisEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -20,7 +19,6 @@ class Event
      *
      * @return void
      */
-    
     public $user;
     public function __construct($user)
     {
@@ -34,13 +32,10 @@ class Event
      */
     public function broadcastOn(){
 
-        return ['channel'];
+        //return ['channel'];
         return new PrivateChannel('channel'); 
     }
     public function broadcastAs(){
         return 'message'; 
     }
-    
-    
 }
-

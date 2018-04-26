@@ -1,12 +1,12 @@
 //const app = require('express')()
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 6001;
 
 //const server = require('http').Server(app);
 const io = require('socket.io')(port);
 
 // server.listen(port, () => {
-//     console.log(`Server start on port ${port}`)
+    console.log(`Server start on port ${port}`)
 // });
 
 io.on('error',function (error) {
@@ -18,14 +18,14 @@ io.on('connection',function (socket) {
 })
 
 const Redis = require('ioredis');
-const redis = new Redis(6379);
+const redis = new Redis(10000);
 
 redis.psubscribe('*',(error, count)=>{
-    console.log(error);
-    console.log(count)
+    // console.log(error);
+    // console.log(count)
 });
 
-redis.on('pmessage', (pattern, channel, message)=>{
+redis.on('pmessage', (partner, channel, message)=>{
     console.log(channel);
     console.log(message)
     message  = JSON.parse(message)

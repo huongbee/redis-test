@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\Event;
+use App\Events\RedisEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -21,11 +21,11 @@ class EventListener
     /**
      * Handle the event.
      *
-     * @param  Event  $event
+     * @param  RedisEvent  $event
      * @return void
      */
-    public function handle(Event $event)
+    public function handle(RedisEvent $event)
     {
-       // echo $event->user;
+        //
     }
 }
