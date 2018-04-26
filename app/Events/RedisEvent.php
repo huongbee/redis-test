@@ -32,10 +32,10 @@ class RedisEvent implements ShouldBroadcast
      */
     public function broadcastOn(){
 
-        //return ['channel'];
-        return new PrivateChannel('channel'); 
+        return ['chat'];
+        //return new PrivateChannel('chat');  // Channel name: private-chat 
     }
     public function broadcastAs(){
-        return 'message'; 
+        return 'message';  //event name
     }
 }

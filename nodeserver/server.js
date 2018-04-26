@@ -27,9 +27,10 @@ redis.psubscribe('*',(error, count)=>{
 
 redis.on('pmessage', (partner, channel, message)=>{
     console.log(channel);
-    console.log(message)
     message  = JSON.parse(message)
-    //io.emit(channel + ':'+message.event,message);
+    console.log(message)
+    
+    io.emit(channel + ':'+message.event,message);
     console.log('sent...');
 });
 

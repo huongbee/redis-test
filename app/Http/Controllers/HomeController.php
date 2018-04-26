@@ -17,7 +17,7 @@ class HomeController extends Controller
         // dd($req->all());
         //$redis = Redis::connection();
         event(
-            $e = new RedisEvent($req->_token)
+            $e = new RedisEvent($req->all())
         );
               
         return redirect()->back();

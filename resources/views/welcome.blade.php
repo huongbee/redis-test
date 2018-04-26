@@ -81,27 +81,34 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
-
+                
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 col-lg-offset-2" >
                         <div id="messages" >
+
                             <form action="{{route('index')}}" method="POST">
                                 {{csrf_field()}}
-                                <input type="text" name="email" value="12">
+                                <input type="text" name="number" value="121234">
                                 <button type="submit">Test</button>
                             </form>
+                            <br>
+                            
                         </div>
                         </div>
                     </div>
                 </div>
+                <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
                 
                 <script>
-                    var socket = io.connect('http://localhost:3000');
-                    socket.on('channel:message', function (data) {
-                        alert(data)
+                    var socket = io.connect('http://localhost:6001');
+                    socket.on('chat:message', function (data) {
+                        console.log(data)
+                        $('#messages').append('<h3>TOKEN Send from socket</h3>')
+                        $('#messages').append(data.data.user._token)
+                        $('#messages').append('<h3>Input number</h3>')
+                        $('#messages').append(data.data.user.number)
                     });
                 </script>
             </div>
