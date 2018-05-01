@@ -25,3 +25,9 @@ Route::post('home', [
     'uses'=>'HomeController@sendData',
     'as'=>'index'
 ]);
+
+
+Route::get('projects/{project}',function (\App\Project $project){
+    $project->load('tasks');
+    return view('projects.show', compact($project));
+});
