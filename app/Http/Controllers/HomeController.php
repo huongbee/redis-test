@@ -3,23 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Events\RedisEvent;
 
 class HomeController extends Controller
 {
-    
-    function getHome(){
-        return view('welcome');
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 
-    function sendData(Request $req){
-        // echo $req->_token;;
-        // dd($req->all());
-        //$redis = Redis::connection();
-        event(
-            $e = new RedisEvent($req->all())
-        );
-              
-        return redirect()->back();
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('home');
     }
 }

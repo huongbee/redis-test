@@ -16,7 +16,7 @@
 //     // return;
 // });
 
-
+////                  redis                 
 Route::get('home', [
     'uses'=>'HomeController@getHome',
     'as'=>'index'
@@ -27,7 +27,26 @@ Route::post('home', [
 ]);
 
 
+//             boadcasting
 Route::get('projects/{project}',function (\App\Project $project){
     $project->load('tasks');
     return view('projects.show', compact($project));
+});
+
+
+
+// auth
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/logoutOthers', function(){
+    auth()->logoutOtherDevices('password'); //logoutOtherDevices is a function be added in SessionGuard class 
+    return redirect('/');
 });

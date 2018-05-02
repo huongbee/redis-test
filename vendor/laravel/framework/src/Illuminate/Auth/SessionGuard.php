@@ -14,6 +14,7 @@ use Illuminate\Contracts\Auth\SupportsBasicAuth;
 use Illuminate\Contracts\Cookie\QueueingFactory as CookieJar;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Hash;
 
 class SessionGuard implements StatefulGuard, SupportsBasicAuth
 {
@@ -749,5 +750,12 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
         $this->request = $request;
 
         return $this;
+    }
+
+    function logoutOtherDevices($password, $attribute = 'password'){
+        if(!$this->user()) return;
+        return tap($this->user()->forceFill([
+            $attribute =>Hash::make($password)
+        ]))->save();
     }
 }
